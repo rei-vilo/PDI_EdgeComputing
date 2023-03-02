@@ -16,8 +16,16 @@ Self-contained remote control with built-in sensors
 
 + [Arduino IDE 2.0.x](https://github.com/arduino/arduino-ide)
 + [Boards package ESP32](https://github.com/espressif/arduino-esp32)
-+ [PDLS_EXT3_Basic_Touch](https://github.com/rei-vilo/PDLS_EXT3_Basic_Touch)
++ [PDLS_EXT3_Basic_Touch](https://github.com/rei-vilo/PDLS_EXT3_Basic_Touch) release `6.0.5` or later
 + [SensorsWeather_Library](https://github.com/rei-vilo/SensorsWeather_Library)
+
+## Options
+
+Two layouts
+
+![](img/Layout_1.png)
+
+![](img/Layout_2.png)
 
 ## Results
 

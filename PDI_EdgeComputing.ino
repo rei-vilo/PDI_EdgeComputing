@@ -24,6 +24,7 @@
 #endif // end IDE
 
 // Set parameters
+#define LAYOUT 2
 
 // Include application, user and local libraries
 #include "SPI.h"
@@ -91,7 +92,7 @@ Button buttonVent(&myGUI);
 Button buttonAC(&myGUI);
 Button buttonDry(&myGUI);
 Button buttonOff(&myGUI);
-Button buttonArea(&myGUI);
+Area buttonArea(&myGUI);
 
 // Prototypes
 
@@ -252,6 +253,7 @@ void setup()
     myScreen.selectFont(fontLarge);
     myGUI.delegate(false);
 
+#if (LAYOUT == 1)
     //   0    1    2    3    4    5    6
     // 0 +----+----+----+----+----+----+
     //   | Temperature  | Humidity     |
@@ -289,44 +291,44 @@ void setup()
 
     buttonArea.dDefine(dx * 3, dy * 4, dx * 2, dy); // hidden button for exit
 
-    /*
-        //   0    1    2    3    4    5    6
-        // 0 +----+----+----+----+----+----+
-        //   | Temperature  | Humidity     |
-        // 1 +----+----+----+----+----+----+
-        //   |         |  + |         |    |
-        // 2 +   12.3  +----+   45.6  +----+
-        //   |         | 23 |         |    |
-        // 3 +----+----+----+----+----+----+
-        //   | °C |    |  - | %RH|    |    |
-        // 4 +----+----+----+----+----+----+
-        //   |A/C |Vent| Dry| Mode    | Off|
-        // 5 +----+----+----+----+----+----+
-        //
+#else
+    //   0    1    2    3    4    5    6
+    // 0 +----+----+----+----+----+----+
+    //   | Temperature  | Humidity     |
+    // 1 +----+----+----+----+----+----+
+    //   |         |  + |         |    |
+    // 2 +   12.3  +----+   45.6  +----+
+    //   |         | 23 |         |    |
+    // 3 +----+----+----+----+----+----+
+    //   | °C |    |  - | %RH|    |    |
+    // 4 +----+----+----+----+----+----+
+    //   |A/C |Vent| Dry| Mode    | Off|
+    // 5 +----+----+----+----+----+----+
+    //
 
-        // Label
-        myScreen.gText(dx * 0, dy * 0, "Temperature");
-        myScreen.gText(dx * 4, dy * 0, "Humidity");
-        myScreen.gText(dx * 0, dy * 3, utf2iso("°C"));
-        myScreen.gText(dx * 3, dy * 3, "%RH");
+    // Label
+    myScreen.gText(dx * 0, dy * 0, "Temperature");
+    myScreen.gText(dx * 4, dy * 0, "Humidity");
+    myScreen.gText(dx * 0, dy * 3, utf2iso("°C"));
+    myScreen.gText(dx * 3, dy * 3, "%RH");
 
-        // Text
-        textTemperature.dDefine(dx * 0, dy * 1, dx * 2, dy * 2, fontNumber);
-        textTarget.dDefine(dx * 2, dy * 2, dx, dy, fontMedium);
-        textHumidity.dDefine(dx * 4, dy * 1, dx * 2, dy * 2, fontNumber);
-        textMode.dDefine(dx * 3, dy * 4, dx * 2, dy, fontMedium);
+    // Text
+    textTemperature.dDefine(dx * 0, dy * 1, dx * 2, dy * 2, fontNumber);
+    textTarget.dDefine(dx * 2, dy * 2, dx, dy, fontMedium);
+    textHumidity.dDefine(dx * 4, dy * 1, dx * 2, dy * 2, fontNumber);
+    textMode.dDefine(dx * 3, dy * 4, dx * 2, dy, fontMedium);
 
-        // Button
-        buttonLess.dStringDefine(dx * 2, dy * 1, dx, dy, "-", fontLarge);
-        buttonMore.dStringDefine(dx * 2, dy * 3, dx, dy, "+", fontLarge);
+    // Button
+    buttonLess.dStringDefine(dx * 2, dy * 1, dx, dy, "-", fontLarge);
+    buttonMore.dStringDefine(dx * 2, dy * 3, dx, dy, "+", fontLarge);
 
-        buttonAC.dStringDefine(dx * 0, dy * 4, dx, dy, "A/C", fontLarge);
-        buttonVent.dStringDefine(dx * 1, dy * 4, dx, dy, "Vent", fontLarge);
-        buttonDry.dStringDefine(dx * 2, dy * 4, dx, dy, "Dry", fontLarge);
-        buttonOff.dStringDefine(dx * 5, dy * 4, dx, dy, "OFF", fontLarge);
+    buttonAC.dStringDefine(dx * 0, dy * 4, dx, dy, "A/C", fontLarge);
+    buttonVent.dStringDefine(dx * 1, dy * 4, dx, dy, "Vent", fontLarge);
+    buttonDry.dStringDefine(dx * 2, dy * 4, dx, dy, "Dry", fontLarge);
+    buttonOff.dStringDefine(dx * 5, dy * 4, dx, dy, "OFF", fontLarge);
 
-        buttonArea.dDefine(dx * 3, dy * 4, dx * 2, dy); // hidden button for exit
-    */
+    buttonArea.dDefine(dx * 3, dy * 4, dx * 2, dy); // hidden button for exit
+#endif // LAYOUT
 
     // Display
     textTemperature.draw("--.-");
